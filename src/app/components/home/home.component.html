@@ -1,0 +1,22 @@
+<div *ngIf="!gameStarted; else gameScreen">
+  <h2>Choose User</h2>
+  <ul *ngFor="let user of users" (click)="selectUser(user)">
+    {{
+      user.name
+    }}
+  </ul>
+  <div>
+    <input type="text" [(ngModel)]="newUser" placeholder="Enter username" />
+    <button (click)="createUser(newUser)">Create User</button>
+  </div>
+  <div *ngIf="selectedUser">
+    <p>{{ selectedUser.name }}</p>
+    <button (click)="startGame()">Start Game</button>
+  </div>
+</div>
+<ng-template #gameScreen>
+  <p>Selected User: {{ selectedUser.name }}</p>
+  <app-game *ngIf="gameStarted"></app-game>
+</ng-template>
+<!-- <button (click)="showLogHistory()">Your Log History</button>
+      <button (click)="showAllLogHistory()">All Log History</button> -->
