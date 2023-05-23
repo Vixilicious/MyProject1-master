@@ -7,9 +7,15 @@ import { HomeComponent } from './components/home/home.component';
 import { GameComponent } from './components/game/game.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './components/services/user.service';
+import { LogHistoryComponent } from './components/log-history/log-history.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, GameComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    GameComponent,
+    LogHistoryComponent,
+  ],
   imports: [BrowserModule, FormsModule, DropDownListModule],
   providers: [UserService],
   bootstrap: [AppComponent],
