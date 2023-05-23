@@ -12,8 +12,8 @@ export class LogHistoryComponent {
 
   public userLogs: ILog[] = [];
 
-  logGuess(user: IUser, points: number, guesses: number) {
-    const log: ILog = { user, points, guesses, timestamp: new Date() };
+  logGuess(user: IUser, points: number) {
+    const log: ILog = { user, points, timestamp: new Date() };
     this.userLogs.push(log);
   }
 

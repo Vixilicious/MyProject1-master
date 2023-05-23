@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* newLog() {
+    if (this.correctGuess === true) {
+      this.newLogs.push({
+        user: {
+          id: this.selectedUser.id,
+          name: this.selectedUser.name,
+        },
+        points: this.points,
+        timestamp: new Date(),
+      });
+    }
+  } */

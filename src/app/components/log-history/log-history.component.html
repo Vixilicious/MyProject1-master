@@ -1,2 +1,4 @@
 <p>log-history works!</p>
-<div *ngFor="let log of logs">{{ log.user.name }}</div>
+<div *ngFor="let log of logs">
+  {{ log.user.name }}, {{ log.points }}, {{ log.timestamp }}
+</div>

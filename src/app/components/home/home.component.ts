@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { IUser } from 'src/app/interfaces/IUser.interface';
 
 @Component({
@@ -32,7 +32,7 @@ export class HomeComponent {
     },
   ];
 
-  public selectedUser: IUser = {
+  @Output() public selectedUser: IUser = {
     name: '',
     id: 0,
   };
