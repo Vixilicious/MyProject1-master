@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GameComponent } from '../game/game.component';
+import { IUser } from 'src/app/interfaces/IUser.interface';
 
 @Component({
   selector: 'app-home',
@@ -9,37 +9,46 @@ import { GameComponent } from '../game/game.component';
 export class HomeComponent {
   public newUser: string = '';
 
-  public users = [
+  public users: IUser[] = [
     {
       name: 'Vixilicious',
+      id: 1,
     },
     {
       name: 'KingJones',
+      id: 2,
     },
     {
       name: 'Michael',
+      id: 3,
     },
     {
       name: 'MickeyMouse',
+      id: 4,
     },
     {
       name: 'Mike',
+      id: 5,
     },
   ];
 
-  public selectedUser: any; // Fråga om detta
+  public selectedUser: IUser = {
+    name: '',
+    id: 0,
+  };
+
   public gameStarted: boolean = false;
 
   public createUser(newUser: string) {
     const user = {
       name: newUser,
+      id: this.users.length + 1,
     };
     this.users.push(user);
     this.selectedUser = user;
   }
 
-  public selectUser(user: any) {
-    //Fråga om detta
+  public selectUser(user: IUser) {
     this.selectedUser = user;
   }
 
