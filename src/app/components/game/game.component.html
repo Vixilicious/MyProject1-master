@@ -5,7 +5,8 @@
   <button (click)="checkGuess()">Submit Guess</button>
   <p>{{ result }}</p>
   <p>{{ points }}</p>
-  <!-- <button (click)="showLogHistory()">Your Log History</button> -->
+  <app-log-history [logs]="newLogs"></app-log-history>
+  <!-- <button (click)="showLogHistory()">Your Log History</button> booleean prop in game comp. and ifstatement -->
 </div>
 <ng-container #loser>
   <div *ngIf="points <= 0">

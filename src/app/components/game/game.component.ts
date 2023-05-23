@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
+import { IUser } from 'src/app/interfaces/IUser.interface';
+import { ILog } from 'src/app/interfaces/ILog.interface';
 
 @Component({
   selector: 'app-game',
@@ -7,12 +9,21 @@ import { HomeComponent } from '../home/home.component';
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent {
-  constructor(private home: HomeComponent) {}
-
   public points: number = 10;
   public guess: number = 0;
   public result: string = '';
-  public userLogs: any[] = [];
+  public guessChecked: boolean = false;
+  public newLogs: ILog[] = [
+    {
+      guesses: 0,
+      points: 10,
+      timestamp: new Date(),
+      user: {
+        name: 'Håkan',
+        id: 0,
+      },
+    },
+  ];
 
   checkGuess() {
     const randomNumber = Math.floor(Math.random() * 10) + 1;
@@ -29,17 +40,5 @@ export class GameComponent {
     if (this.points <= 0) {
       this.result = "You're out of guesses";
     }
-
-    // this.logGuess(this.selectUser, this.guess, this.result);
-  }
-
-  logGuess(user: any, points: number, guesses: number) {
-    const log = { user, points, guesses, date: new Date() };
-    this.userLogs.push(log);
-    this.home.selectUser = user;
-  }
-
-  getLog(user: any) {
-    return this.userLogs.filter((log) => log.user === user);
   }
 }
