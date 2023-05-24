@@ -32,7 +32,7 @@ export class HomeComponent {
     },
   ];
 
-  @Output() public selectedUser: IUser = {
+  public selectedUser: IUser = {
     name: '',
     id: 0,
   };

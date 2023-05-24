@@ -13,6 +13,7 @@ export class GameComponent {
     name: '',
     id: 0,
   };
+  public randomNumber = this.generateNumber();
   public points = 10;
   public guess: number = 0;
   public result: string = '';
@@ -32,8 +33,7 @@ export class GameComponent {
   public today = `${this.day} ${this.month} ${this.year} ${this.hours}:${this.minutes}:${this.seconds}`;
 
   checkGuess() {
-    const randomNumber = Math.floor(Math.random() * 10) + 1;
-    if (this.guess === randomNumber) {
+    if (this.guess === this.randomNumber) {
       this.result = "Yay, it's correct!";
       this.points = this.points;
       const newLog: ILog = {
@@ -44,9 +44,9 @@ export class GameComponent {
         points: this.points,
         timestamp: this.today,
       };
-      this.newLogs.push(newLog);
+      this.newLogs.unshift(newLog);
       this.gameOn = false;
-    } else if (this.guess < randomNumber) {
+    } else if (this.guess < this.randomNumber) {
       this.result = 'The number is higher.';
       this.points = this.points - 1;
     } else {
@@ -55,6 +55,16 @@ export class GameComponent {
     }
     if (this.points <= 0) {
       this.result = "You're out of guesses";
+      this.gameOn = false;
+      const newLog: ILog = {
+        user: {
+          id: this.selectedUser.id,
+          name: this.selectedUser.name,
+        },
+        points: this.points,
+        timestamp: this.today,
+      };
+      this.newLogs.unshift(newLog);
     }
   }
 
@@ -62,7 +72,10 @@ export class GameComponent {
     this.guess = 0;
     this.result = '';
     this.points = 10;
-    this.gameOn === true;
-    this.checkGuess();
+    this.randomNumber = this.generateNumber();
+    this.gameOn = true;
+  }
+  generateNumber() {
+    return Math.floor(Math.random() * 10) + 1;
   }
 }

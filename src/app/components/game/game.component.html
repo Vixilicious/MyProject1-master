@@ -1,4 +1,4 @@
-<div *ngIf="points > 0; loser">
+<div *ngIf="points > 0">
   <h2>Number Guessing Game</h2>
   <p>Guess the number between 1 and 10:</p>
   <input [(ngModel)]="guess" type="number" min="1" max="10" />
@@ -8,15 +8,13 @@
   </div>
   <p>{{ result }}</p>
   <p>{{ points }}</p>
-  <app-log-history [logs]="newLogs">
-    {{ dateOf }}
-  </app-log-history>
+  <app-log-history [logs]="newLogs"> </app-log-history>
+  {{ dateOf }}
   <!-- <button (click)="showLogHistory()">Your Log History</button> booleean prop in game comp. and ifstatement -->
 </div>
-<ng-container #loser>
-  <div *ngIf="points <= 0">
-    <p>{{ result }}</p>
-    <p>{{ points }}</p>
-    <button (click)="newGame()" *ngIf="gameOn === false">New Game</button>
-  </div>
-</ng-container>
+
+<div *ngIf="points <= 0">
+  <p>{{ result }}</p>
+  <p>{{ points }}</p>
+  <button (click)="newGame()">New Game</button>
+</div>

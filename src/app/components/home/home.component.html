@@ -16,7 +16,7 @@
 </div>
 <ng-template #gameScreen>
   <p>Selected User: {{ selectedUser.name }}</p>
-  <app-game *ngIf="gameStarted"></app-game>
+  <app-game *ngIf="gameStarted" [selectedUser]="selectedUser"></app-game>
 </ng-template>
 <!-- <button (click)="showLogHistory()">Your Log History</button>
       <button (click)="showAllLogHistory()">All Log History</button> -->
