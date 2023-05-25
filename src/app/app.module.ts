@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent],

@@ -1,34 +1,23 @@
 <div *ngIf="!gameStarted; else gameScreen">
-  <h2>Choose User</h2>
+  <!-- <h2>Choose User</h2>
   <ul *ngFor="let user of users" (click)="selectUser(user)">
     {{
       user.name
     }}
-  </ul>
-  <h4>Basic mat-select</h4>
+  </ul> -->
   <mat-form-field>
     <mat-label>Choose user</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="selectedUser">
       <mat-option *ngFor="let user of users" [value]="user">
         {{ user.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <h4>Basic native select</h4>
-  <!-- <mat-form-field>
-    <mat-label>Cars</mat-label>
-    <select matNativeControl required>
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  </mat-form-field> -->
   <div>
     <input type="text" [(ngModel)]="newUser" placeholder="Enter username" />
     <button (click)="createUser(newUser)">Create User</button>
   </div>
+
   <div *ngIf="selectedUser">
     <p>{{ selectedUser.name }}</p>
     <button (click)="startGame()">Start Game</button>

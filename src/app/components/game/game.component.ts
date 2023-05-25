@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
 import { IUser } from 'src/app/interfaces/IUser.interface';
 import { ILog } from 'src/app/interfaces/ILog.interface';
+import { IRank } from 'src/app/interfaces/IRank.interface';
 
 @Component({
   selector: 'app-game',
@@ -13,6 +13,10 @@ export class GameComponent {
     name: '',
     id: 0,
   };
+  public rank: IRank = {
+    position: 0,
+  };
+
   public randomNumber = this.generateNumber();
   public points = 10;
   public guess: number = 0;
@@ -37,6 +41,9 @@ export class GameComponent {
       this.result = "Yay, it's correct!";
       this.points = this.points;
       const newLog: ILog = {
+        rank: {
+          position: this.rank.position,
+        },
         user: {
           id: this.selectedUser.id,
           name: this.selectedUser.name,
@@ -57,6 +64,9 @@ export class GameComponent {
       this.result = "You're out of guesses";
       this.gameOn = false;
       const newLog: ILog = {
+        rank: {
+          position: this.rank.position,
+        },
         user: {
           id: this.selectedUser.id,
           name: this.selectedUser.name,
@@ -66,6 +76,14 @@ export class GameComponent {
       };
       this.newLogs.unshift(newLog);
     }
+  }
+
+  setRank() {
+    this.newLogs.sort((a, b) => b.points - a.points);
+
+    this.newLogs.forEach((log, index) => {
+      log.rank.position = index + 1;
+    });
   }
 
   newGame() {
