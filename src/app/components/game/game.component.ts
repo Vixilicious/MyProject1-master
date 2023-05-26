@@ -40,6 +40,7 @@ export class GameComponent {
     if (this.guess === this.randomNumber) {
       this.result = "Yay, it's correct!";
       this.points = this.points;
+      this.setRank();
       const newLog: ILog = {
         rank: {
           position: this.rank.position,
@@ -51,8 +52,7 @@ export class GameComponent {
         points: this.points,
         timestamp: this.today,
       };
-      this.newLogs.unshift(newLog);
-      this.setRank();
+      this.newLogs.push(newLog);
       this.gameOn = false;
       console.log(newLog);
     } else if (this.guess < this.randomNumber) {
@@ -65,6 +65,7 @@ export class GameComponent {
     if (this.points <= 0) {
       this.result = "You're out of guesses";
       this.gameOn = false;
+      this.setRank();
       const newLog: ILog = {
         rank: {
           position: this.rank.position,
@@ -76,18 +77,20 @@ export class GameComponent {
         points: this.points,
         timestamp: this.today,
       };
-
-      this.newLogs.unshift(newLog);
-      this.setRank();
+      this.newLogs.push(newLog);
     }
   }
 
   setRank() {
-    if (this.points > 0) {
-      this.newLogs.sort((a, b) => b.points - a.points);
-      for (let i = 0; i < this.newLogs.length; i++) {
-        this.newLogs[i].rank.position = i + 1;
-      }
+    const samePointsLogs = this.newLogs.filter(
+      (log) => log.points === this.points
+    );
+    if (samePointsLogs.length > 0) {
+      this.rank.position = samePointsLogs[0].rank.position;
+    } else if (this.newLogs.length > 0) {
+      this.rank.position = this.newLogs.length + 1;
+    } else {
+      this.rank.position = this.newLogs.length + 1;
     }
   }
 

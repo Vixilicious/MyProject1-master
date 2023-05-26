@@ -5,28 +5,21 @@
 </div>
 <div>
   <table mat-table [dataSource]="logs">
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- Position Column -->
     <ng-container matColumnDef="rank.position">
       <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let log">{{ log.rank.position }}</td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="user.name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let log">{{ log.user.name }}</td>
     </ng-container>
 
-    <!-- Weight Column -->
     <ng-container matColumnDef="points">
       <th mat-header-cell *matHeaderCellDef>Score</th>
       <td mat-cell *matCellDef="let log">{{ log.points }}</td>
     </ng-container>
 
-    <!-- Symbol Column -->
     <ng-container matColumnDef="timestamp">
       <th mat-header-cell *matHeaderCellDef>Date</th>
       <td mat-cell *matCellDef="let log">{{ log.timestamp }}</td>
