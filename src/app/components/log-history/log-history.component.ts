@@ -23,15 +23,21 @@ export class LogHistoryComponent {
       timestamp: new Date(),
     },
   ];
-  public displayedColumns: string[] = ['Rank', 'User', 'Score', 'Time'];
+  public displayedColumns: string[] = [
+    'rank.position',
+    'user.name',
+    'points',
+    'timestamp',
+  ];
   public userLogs: ILog[] = [];
 
-  logGuess(user: IUser, points: number, rank: IRank) {
-    const log: ILog = { rank, user, points, timestamp: new Date() };
-    this.userLogs.push(log);
-  }
+  // logGuess(user: IUser, points: number, rank: IRank) {
+  //   const log: ILog = { rank, user, points, timestamp: new Date() };
+  //   this.userLogs.push(log);
+  //   console.log(user.name);
+  // }
 
-  getLog(user: any) {
-    return this.userLogs.filter((log) => log.user === user);
-  }
+  // getLog(user: any) {
+  //   return this.userLogs.filter((log) => log.user === user);
+  // }
 }

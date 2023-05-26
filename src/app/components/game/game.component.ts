@@ -52,7 +52,9 @@ export class GameComponent {
         timestamp: this.today,
       };
       this.newLogs.unshift(newLog);
+      this.setRank();
       this.gameOn = false;
+      console.log(newLog);
     } else if (this.guess < this.randomNumber) {
       this.result = 'The number is higher.';
       this.points = this.points - 1;
@@ -74,16 +76,19 @@ export class GameComponent {
         points: this.points,
         timestamp: this.today,
       };
+
       this.newLogs.unshift(newLog);
+      this.setRank();
     }
   }
 
   setRank() {
-    this.newLogs.sort((a, b) => b.points - a.points);
-
-    this.newLogs.forEach((log, index) => {
-      log.rank.position = index + 1;
-    });
+    if (this.points > 0) {
+      this.newLogs.sort((a, b) => b.points - a.points);
+      for (let i = 0; i < this.newLogs.length; i++) {
+        this.newLogs[i].rank.position = i + 1;
+      }
+    }
   }
 
   newGame() {
