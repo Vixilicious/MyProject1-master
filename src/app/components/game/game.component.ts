@@ -25,22 +25,10 @@ export class GameComponent {
   public dateOf = [''];
   public newLogs: ILog[] = [];
 
-  public timestamp: Date = new Date();
-  public day = this.timestamp.getDate();
-  public month = this.timestamp.toLocaleString('en-US', { month: 'long' });
-  public year = this.timestamp.getFullYear();
-
-  public hours = this.timestamp.getHours();
-  public minutes = this.timestamp.getMinutes();
-  public seconds = this.timestamp.getSeconds();
-
-  public today = `${this.day} ${this.month} ${this.year} ${this.hours}:${this.minutes}:${this.seconds}`;
-
   checkGuess() {
     if (this.guess === this.randomNumber) {
       this.result = "Yay, it's correct!";
       this.points = this.points;
-      this.setRank();
       const newLog: ILog = {
         rank: {
           position: this.rank.position,
@@ -50,9 +38,9 @@ export class GameComponent {
           name: this.selectedUser.name,
         },
         points: this.points,
-        timestamp: this.today,
+        timestamp: new Date(),
       };
-      this.newLogs.push(newLog);
+      this.newLogs = this.newLogs.concat(newLog);
       this.gameOn = false;
       console.log(newLog);
     } else if (this.guess < this.randomNumber) {
@@ -62,10 +50,10 @@ export class GameComponent {
       this.result = 'The number is lower.';
       this.points = this.points - 1;
     }
+    this.setRank();
     if (this.points <= 0) {
       this.result = "You're out of guesses";
       this.gameOn = false;
-      this.setRank();
       const newLog: ILog = {
         rank: {
           position: this.rank.position,
@@ -75,22 +63,21 @@ export class GameComponent {
           name: this.selectedUser.name,
         },
         points: this.points,
-        timestamp: this.today,
+        timestamp: new Date(),
       };
-      this.newLogs.push(newLog);
+      this.newLogs = this.newLogs.concat(newLog);
     }
   }
 
   setRank() {
-    const samePointsLogs = this.newLogs.filter(
-      (log) => log.points === this.points
-    );
-    if (samePointsLogs.length > 0) {
-      this.rank.position = samePointsLogs[0].rank.position;
-    } else if (this.newLogs.length > 0) {
-      this.rank.position = this.newLogs.length + 1;
-    } else {
-      this.rank.position = this.newLogs.length + 1;
+    this.newLogs.sort((a, b) => b.points - a.points);
+
+    let rank = 1;
+    for (let i = 0; i < this.newLogs.length; i++) {
+      if (i > 0 && this.newLogs[i].points < this.newLogs[i - 1].points) {
+        rank++;
+      }
+      this.newLogs[i].rank.position = rank;
     }
   }
 
