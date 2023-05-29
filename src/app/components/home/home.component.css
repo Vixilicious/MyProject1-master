@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500&family=Overpass:wght@200;300&family=Questrial&display=swap");
+
+.home-main {
+  height: 100vh;
+  background-color: #4a4a4a;
+}
+
+.home-container {
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  border: 1px solid #eca2a2;
+}
+
+h1 {
+  font-family: "Aoboshi One", serif;
+  font-size: 3rem;
+  color: #414141;
+  text-shadow: 1.5px 1.5px 2px rgb(35, 35, 35);
+}
+
+.dropdown {
+  border: 1px solid blue;
+  width: 380px;
+}
+
+.drop-users {
+  font-size: 17px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.choose-create-container {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* border: 1px solid rgb(30, 54, 159); */
+}
+
+.create-container {
+  display: flex;
+  justify-content: space-between;
+  width: 380px;
+  align-items: center;
+  /* border: 1px solid rgb(92, 187, 63); */
+}
+
+.enter-start-container {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
+  /* border: 1px solid rgb(165, 65, 65); */
+}
+
+.enter-user {
+  height: 40px;
+  width: 250px;
+  background-color: #6a666698;
+  border: none;
+  border-radius: 0px;
+  background: #4a4a4a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.402);
+  color: white;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.23);
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 1px;
+}
+
+.create-btn {
+  background-color: #6a666698;
+  height: 35px;
+  border: none;
+  border-radius: 11px;
+  font-family: "Overpass", sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  letter-spacing: 0.8px;
+  border-radius: 5px;
+  background: #4e4e4e;
+  box-shadow: 6px 6px 13px #2e2e2ed9, -3px -3px 8px #666666;
+}
+
+.create-btn:active {
+  border-radius: 5px;
+  background: #74747485;
+  box-shadow: inset 11px 11px 31px #303030, inset -11px -11px 31px #646464;
+}
+
+.start-btn {
+  width: 380px;
+  height: 30px;
+}

@@ -4,7 +4,7 @@
   {{ log.timestamp }} -->
 </div>
 <div>
-  <table mat-table [dataSource]="logs">
+  <table mat-table [dataSource]="logs" class="table">
     <ng-container matColumnDef="rank.position">
       <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let log">{{ log.rank.position }}</td>

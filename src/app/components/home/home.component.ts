@@ -8,6 +8,7 @@ import { IUser } from 'src/app/interfaces/IUser.interface';
 })
 export class HomeComponent {
   public newUser: string = '';
+  public userSelected: boolean = false;
 
   public users: IUser[] = [
     {
@@ -46,10 +47,12 @@ export class HomeComponent {
     };
     this.users.push(user);
     this.selectedUser = user;
+    this.userSelected = true;
   }
 
   public selectUser(user: IUser) {
     this.selectedUser = user;
+    this.userSelected = true;
   }
 
   public startGame() {

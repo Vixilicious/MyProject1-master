@@ -1,20 +1,44 @@
-<div *ngIf="points > 0">
-  <h2>Number Guessing Game</h2>
-  <p>Guess the number between 1 and 10:</p>
-  <input [(ngModel)]="guess" type="number" min="1" max="10" />
-  <div class="btns">
-    <button (click)="checkGuess()" *ngIf="gameOn === true">Submit Guess</button>
-    <button (click)="newGame()" *ngIf="gameOn === false">New Game</button>
+<div class="main">
+  <div *ngIf="points > 0">
+    <h2>Number Guessing Game</h2>
+    <p>Guess the number between 1 and 10:</p>
+    <input
+      [(ngModel)]="guess"
+      type="number"
+      min="1"
+      max="10"
+      class="numberInp"
+    />
+    <div class="btns">
+      <button
+        (click)="checkGuess()"
+        *ngIf="gameOn === true"
+        class="btns"
+        class="submitBtn"
+      >
+        Submit Guess
+      </button>
+      <button
+        (click)="newGame()"
+        *ngIf="gameOn === false"
+        class="btns"
+        class="newGameBtn"
+      >
+        New Game
+      </button>
+    </div>
+    <p>{{ result }}</p>
+    <p>{{ points }}</p>
+    <app-log-history [logs]="newLogs"> </app-log-history>
+    {{ dateOf }}
   </div>
-  <p>{{ result }}</p>
-  <p>{{ points }}</p>
-  <app-log-history [logs]="newLogs"> </app-log-history>
-  {{ dateOf }}
-</div>
 
-<div *ngIf="points <= 0">
-  <p>{{ result }}</p>
-  <p>{{ points }}</p>
-  <button (click)="newGame()">New Game</button>
-  <app-log-history [logs]="newLogs"> </app-log-history>
+  <div *ngIf="points <= 0">
+    <p>{{ result }}</p>
+    <p>{{ points }}</p>
+    <button (click)="newGame()" class="btns" class="newGameBtn">
+      New Game
+    </button>
+    <app-log-history [logs]="newLogs"> </app-log-history>
+  </div>
 </div>
