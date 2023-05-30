@@ -1,49 +1,55 @@
 <div class="home-main">
   <div class="home-container">
-    <h1 class="title">THE GUESSING GAME</h1>
+    <div class="home-box">
+      <h1 class="title">THE GUESSING GAME</h1>
 
-    <div *ngIf="!gameStarted; else gameScreen" class="choose-create-container">
-      <!-- <h2>Choose User</h2>
-      <ul *ngFor="let user of users" (click)="selectUser(user)">
-        {{
-          user.name
-        }}
-      </ul> -->
-      <div class="enter-start-container">
-        <div class="create-container" *ngIf="!userSelected">
-          <input
-            type="text"
-            [(ngModel)]="newUser"
-            placeholder="Enter username"
-            class="enter-user"
-          />
-          <button class="create-btn" (click)="createUser(newUser)">
-            CREATE USER
-          </button>
+      <div
+        *ngIf="!gameStarted; else gameScreen"
+        class="choose-create-container"
+      >
+        <!-- <h2>Choose User</h2>
+          <ul *ngFor="let user of users" (click)="selectUser(user)">
+            {{
+              user.name
+            }}
+          </ul> -->
+        <div class="enter-choose-container">
+          <div class="create-container" *ngIf="!userSelected">
+            <input
+              type="text"
+              [(ngModel)]="newUser"
+              placeholder="Enter username"
+              class="enter-user"
+            />
+            <button class="create-btn" (click)="createUser(newUser)">
+              CREATE USER
+            </button>
+          </div>
+          <mat-form-field>
+            <mat-label class="dropdown-choose">Choose user</mat-label>
+
+            <mat-select [(ngModel)]="selectedUser">
+              <mat-option
+                *ngFor="let user of users"
+                [value]="user"
+                (click)="selectUser(user)"
+              >
+                <h3>
+                  {{ user.name }}
+                </h3>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <mat-form-field>
-          <mat-label class="drop-users">Choose user</mat-label>
-          <mat-select [(ngModel)]="selectedUser">
-            <mat-option
-              *ngFor="let user of users"
-              [value]="user"
-              (click)="selectUser(user)"
-            >
-              <h3>
-                {{ user.name }}
-              </h3>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <!-- *ngIf="userSelected" -->
+        <div>
+          <button class="start-btn" (click)="startGame()">START GAME</button>
+        </div>
       </div>
-      <!-- *ngIf="userSelected" -->
-      <div>
-        <button class="start-btn" (click)="startGame()">START GAME</button>
-      </div>
+      <ng-template #gameScreen>
+        <p>Selected User: {{ selectedUser.name }}</p>
+        <app-game *ngIf="gameStarted" [selectedUser]="selectedUser"></app-game>
+      </ng-template>
     </div>
-    <ng-template #gameScreen>
-      <p>Selected User: {{ selectedUser.name }}</p>
-      <app-game *ngIf="gameStarted" [selectedUser]="selectedUser"></app-game>
-    </ng-template>
   </div>
 </div>

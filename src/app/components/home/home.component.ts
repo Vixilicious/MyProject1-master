@@ -1,4 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { IUser } from 'src/app/interfaces/IUser.interface';
 
 @Component({
@@ -9,6 +10,7 @@ import { IUser } from 'src/app/interfaces/IUser.interface';
 export class HomeComponent {
   public newUser: string = '';
   public userSelected: boolean = false;
+  public panelColor = new FormControl('red');
 
   public users: IUser[] = [
     {
