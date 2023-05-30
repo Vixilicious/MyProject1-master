@@ -43,7 +43,9 @@
         </div>
         <!-- *ngIf="userSelected" -->
         <div>
-          <button class="start-btn" (click)="startGame()">START GAME</button>
+          <button *ngIf="userSelected" class="start-btn" (click)="startGame()">
+            START GAME
+          </button>
         </div>
       </div>
       <ng-template #gameScreen>
