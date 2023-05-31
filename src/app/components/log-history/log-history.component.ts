@@ -10,6 +10,9 @@ import { IUser } from 'src/app/interfaces/IUser.interface';
   styleUrls: ['./log-history.component.css'],
 })
 export class LogHistoryComponent {
+  public logOn: boolean = false;
+  public logOff: boolean = false;
+
   @Input() public logs: ILog[] = [
     {
       rank: {
@@ -30,6 +33,14 @@ export class LogHistoryComponent {
     'timestamp',
   ];
   public userLogs: ILog[] = [];
+
+  public logSwitch() {
+    this.logOn = true;
+  }
+
+  public logHide() {
+    this.logOn = false;
+  }
 
   // logGuess(user: IUser, points: number, rank: IRank) {
   //   const log: ILog = { rank, user, points, timestamp: new Date() };
