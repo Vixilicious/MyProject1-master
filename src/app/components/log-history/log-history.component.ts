@@ -13,6 +13,8 @@ export class LogHistoryComponent {
   public logOn: boolean = false;
   public logOff: boolean = false;
 
+  @Input() cardSwitched: boolean = false;
+
   @Input() public logs: ILog[] = [
     {
       rank: {

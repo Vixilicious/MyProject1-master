@@ -5,5 +5,5 @@ export interface ILog {
   rank: IRank;
   user: IUser;
   points: number;
-  timestamp: any;
+  timestamp: any; //TO-DO: change to Date
 }

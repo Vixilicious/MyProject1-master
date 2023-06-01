@@ -18,6 +18,7 @@ export class GameComponent {
     position: 0,
   };
 
+  public cardSwitched: boolean = false;
   public randomNumber = this.generateNumber();
   public points = 10;
   public guess: number = 0;
@@ -25,33 +26,20 @@ export class GameComponent {
   public gameOn: boolean = true;
   public dateOf = [''];
   public newLogs: ILog[] = [];
-  public currentLogs: ILog[] = [];
-  public recentLog: ILog | undefined;
-
-  // public addObject(recentLog: ILog) {
-  //   const newObject: ILog = recentLog;
-  //   this.currentLogs.unshift(newObject);
-  //   this.recentLog = newObject;
-  // }
+  public newLog: ILog = {
+    points: 0,
+    rank: { position: 0 },
+    timestamp: new Date(),
+    user: { name: '', id: 0 },
+  };
 
   checkGuess() {
     if (this.guess === this.randomNumber) {
       this.result = "Yay, it's correct!";
       this.points = this.points;
-      const newLog: ILog = {
-        rank: {
-          position: this.rank.position,
-        },
-        user: {
-          id: this.selectedUser.id,
-          name: this.selectedUser.name,
-        },
-        points: this.points,
-        timestamp: new Date(),
-      };
-      this.newLogs = this.newLogs.concat(newLog);
       this.gameOn = false;
-      console.log(newLog);
+
+      console.log(this.newLog);
     } else if (this.guess < this.randomNumber) {
       this.result = 'The number is higher.';
       this.points = this.points - 1;
@@ -63,19 +51,20 @@ export class GameComponent {
     if (this.points <= 0) {
       this.result = "You're out of guesses";
       this.gameOn = false;
-      const newLog: ILog = {
-        rank: {
-          position: this.rank.position,
-        },
-        user: {
-          id: this.selectedUser.id,
-          name: this.selectedUser.name,
-        },
-        points: this.points,
-        timestamp: new Date(),
-      };
-      this.newLogs = this.newLogs.concat(newLog);
     }
+
+    this.newLog = {
+      rank: {
+        position: this.rank.position,
+      },
+      user: {
+        id: this.selectedUser.id,
+        name: this.selectedUser.name,
+      },
+      points: this.points,
+      timestamp: new Date(),
+    };
+    this.newLogs = this.newLogs.concat(this.newLog);
   }
 
   setRank() {
@@ -88,6 +77,10 @@ export class GameComponent {
       }
       this.newLogs[i].rank.position = rank;
     }
+  }
+
+  switchCard() {
+    this.cardSwitched = true;
   }
 
   newGame() {
