@@ -1,8 +1,5 @@
 <p>log-history works!</p>
-<div *ngFor="let log of logs">
-  <!-- {{ log.rank.position }} {{ log.user.name }}, {{ log.points }},
-  {{ log.timestamp }} -->
-</div>
+
 <div>
   <button (click)="logSwitch()" *ngIf="!logOn">Logs</button>
   <button (click)="logHide()" *ngIf="logOn">Back</button>

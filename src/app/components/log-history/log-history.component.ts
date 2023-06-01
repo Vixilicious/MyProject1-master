@@ -32,6 +32,11 @@ export class LogHistoryComponent {
     'points',
     'timestamp',
   ];
+
+  // get recentLog(): ILog | undefined {
+  //   return this.logs.length > 0 ? this.logs[this.logs.length - 1] : undefined;
+  // }
+
   public userLogs: ILog[] = [];
 
   public logSwitch() {
