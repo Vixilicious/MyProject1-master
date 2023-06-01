@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="!cardSwitched">
   <div *ngIf="points > 0">
     <h2>Number Guessing Game</h2>
     <p>Guess the number between 1 and 10:</p>
@@ -9,6 +9,7 @@
       max="10"
       class="numberInp"
     />
+    <!-- //TO-DO: Replace with Angular Material input component. -->
     <div class="btns">
       <button
         (click)="checkGuess()"
@@ -27,22 +28,27 @@
         New Game
       </button>
     </div>
-    <p>{{ result }}</p>
-    <p>{{ points }}</p>
-    <app-log-history [logs]="newLogs"> </app-log-history>
-    <div class="log-container">
-      <h3>Log History</h3>
-      <p></p>
-    </div>
-    {{ dateOf }}
   </div>
-
+  <p>{{ result }}</p>
+  <p>{{ points }}</p>
+  <app-log-history [logs]="newLogs" [cardSwitched]="cardSwitched">
+  </app-log-history>
+  <div class="log-container">
+    <div *ngIf="newLog.user.id != 0">
+      <p class="currentRank">Rank: {{ newLog.rank.position }}</p>
+      <p class="currentPoints">Points: {{ newLog.points }}</p>
+      <p class="currentUser">User: {{ newLog.user.name }}</p>
+    </div>
+  </div>
+  {{ dateOf }}
   <div *ngIf="points <= 0">
     <p>{{ result }}</p>
     <p>{{ points }}</p>
     <button (click)="newGame()" class="btns" class="newGameBtn">
       New Game
     </button>
-    <app-log-history [logs]="newLogs"> </app-log-history>
+    <!-- <div class="log-component">
+      <app-log-history [logs]="newLogs"> </app-log-history>
+    </div> -->
   </div>
 </div>
