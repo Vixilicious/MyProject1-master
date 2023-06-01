@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IUser } from 'src/app/interfaces/IUser.interface';
 import { ILog } from 'src/app/interfaces/ILog.interface';
 import { IRank } from 'src/app/interfaces/IRank.interface';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-game',
@@ -24,6 +25,14 @@ export class GameComponent {
   public gameOn: boolean = true;
   public dateOf = [''];
   public newLogs: ILog[] = [];
+  public currentLogs: ILog[] = [];
+  public recentLog: ILog | undefined;
+
+  // public addObject(recentLog: ILog) {
+  //   const newObject: ILog = recentLog;
+  //   this.currentLogs.unshift(newObject);
+  //   this.recentLog = newObject;
+  // }
 
   checkGuess() {
     if (this.guess === this.randomNumber) {
@@ -87,7 +96,9 @@ export class GameComponent {
     this.points = 10;
     this.randomNumber = this.generateNumber();
     this.gameOn = true;
+    // this.addObject(recentLog);
   }
+
   generateNumber() {
     return Math.floor(Math.random() * 10) + 1;
   }
