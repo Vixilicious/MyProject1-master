@@ -1,54 +1,57 @@
-<div class="main" *ngIf="!cardSwitched">
-  <div *ngIf="points > 0">
-    <h2>Number Guessing Game</h2>
-    <p>Guess the number between 1 and 10:</p>
-    <input
-      [(ngModel)]="guess"
-      type="number"
-      min="1"
-      max="10"
-      class="numberInp"
-    />
-    <!-- //TO-DO: Replace with Angular Material input component. -->
-    <div class="btns">
-      <button
-        (click)="checkGuess()"
-        *ngIf="gameOn === true"
-        class="btns"
-        class="submitBtn"
-      >
-        Submit Guess
-      </button>
-      <button
-        (click)="newGame()"
-        *ngIf="gameOn === false"
-        class="btns"
-        class="newGameBtn"
-      >
+<div class="main">
+  <div class="card1" *ngIf="cardSwitched === false">
+    <div *ngIf="points > 0">
+      <h2>Number Guessing Game</h2>
+      <p>Guess the number between 1 and 10:</p>
+      <input
+        [(ngModel)]="guess"
+        type="number"
+        min="1"
+        max="10"
+        class="numberInp"
+      />
+      <!-- //TO-DO: Replace with Angular Material input component. -->
+      <div class="btns">
+        <button
+          (click)="checkGuess()"
+          *ngIf="gameOn === true"
+          class="btns"
+          class="submitBtn"
+        >
+          Submit Guess
+        </button>
+        <button
+          (click)="newGame()"
+          *ngIf="gameOn === false"
+          class="btns"
+          class="newGameBtn"
+        >
+          New Game
+        </button>
+      </div>
+    </div>
+    <p>{{ result }}</p>
+    <p>{{ points }}</p>
+    <div class="log-container">
+      <div *ngIf="newLog.user.id != 0">
+        <p class="currentRank">Rank: {{ newLog.rank.position }}</p>
+        <p class="currentPoints">Points: {{ newLog.points }}</p>
+        <p class="currentUser">User: {{ newLog.user.name }}</p>
+      </div>
+    </div>
+    {{ dateOf }}
+    <div *ngIf="points <= 0">
+      <p>{{ result }}</p>
+      <p>{{ points }}</p>
+      <button (click)="newGame()" class="btns" class="newGameBtn">
         New Game
       </button>
     </div>
   </div>
-  <p>{{ result }}</p>
-  <p>{{ points }}</p>
-  <app-log-history [logs]="newLogs" [cardSwitched]="cardSwitched">
+  <button (click)="switchCard()" *ngIf="cardSwitched === false">Logs</button>
+  <button (click)="switchBack()" *ngIf="cardSwitched === true">Back</button>
+  <div class="sortByHigh">High Score</div>
+  <div class="sortByNoob">Noob Score</div>
+  <app-log-history [logs]="newLogs" *ngIf="cardSwitched === true">
   </app-log-history>
-  <div class="log-container">
-    <div *ngIf="newLog.user.id != 0">
-      <p class="currentRank">Rank: {{ newLog.rank.position }}</p>
-      <p class="currentPoints">Points: {{ newLog.points }}</p>
-      <p class="currentUser">User: {{ newLog.user.name }}</p>
-    </div>
-  </div>
-  {{ dateOf }}
-  <div *ngIf="points <= 0">
-    <p>{{ result }}</p>
-    <p>{{ points }}</p>
-    <button (click)="newGame()" class="btns" class="newGameBtn">
-      New Game
-    </button>
-    <!-- <div class="log-component">
-      <app-log-history [logs]="newLogs"> </app-log-history>
-    </div> -->
-  </div>
 </div>

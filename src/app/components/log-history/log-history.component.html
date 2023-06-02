@@ -1,10 +1,7 @@
 <p>log-history works!</p>
 
 <div>
-  <button (click)="logSwitch()" *ngIf="!logOn">Logs</button>
-  <button (click)="logHide()" *ngIf="logOn">Back</button>
-
-  <div class="log-container" *ngIf="logOn">
+  <div class="log-container">
     <table mat-table [dataSource]="logs" class="table">
       <ng-container matColumnDef="rank.position">
         <th mat-header-cell *matHeaderCellDef>No.</th>

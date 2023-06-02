@@ -10,10 +10,10 @@ import { IUser } from 'src/app/interfaces/IUser.interface';
   styleUrls: ['./log-history.component.css'],
 })
 export class LogHistoryComponent {
-  public logOn: boolean = false;
+  public logOn: boolean = true;
   public logOff: boolean = false;
 
-  @Input() cardSwitched: boolean = false;
+  @Input() public cardSwitched: boolean = false;
 
   @Input() public logs: ILog[] = [
     {
@@ -43,10 +43,12 @@ export class LogHistoryComponent {
 
   public logSwitch() {
     this.logOn = true;
+    this.cardSwitched = true;
   }
 
   public logHide() {
     this.logOn = false;
+    // this.cardSwitched = false;
   }
 
   // logGuess(user: IUser, points: number, rank: IRank) {

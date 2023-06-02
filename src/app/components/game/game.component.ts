@@ -82,6 +82,15 @@ export class GameComponent {
   switchCard() {
     this.cardSwitched = true;
   }
+  switchBack() {
+    this.cardSwitched = false;
+  }
+
+  highScore() {
+  this.newLogs.sort((a, b) => 
+return (a.score) - (b.score)
+)
+  }
 
   newGame() {
     this.guess = 0;
